@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>무한 크래프트 월드</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+  <div class="ambient ambient-c"></div>
+
+  <header class="hero">
+    <div>
+      <p class="eyebrow">GitHub Pages Ready</p>
+      <h1>무한 크래프트 월드</h1>
+      <p class="subtitle">기본 요소를 합쳐 새로운 요소를 만들고, 도감·업적·랭킹·First Discovery를 모아보세요.</p>
+    </div>
+    <div class="hero-card">
+      <span class="spark">✨</span>
+      <strong id="playerNameLabel">탐험가</strong>
+      <button id="openNameModal" class="ghost-btn">닉네임 변경</button>
+      <small id="syncStatus">로컬 모드</small>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="panel sidebar">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">Inventory</p>
+          <h2>내 요소</h2>
+        </div>
+        <button id="clearSearch" class="icon-btn" title="검색 초기화">↻</button>
+      </div>
+      <input id="searchInput" class="search" placeholder="요소 검색..." autocomplete="off" />
+      <div class="sort-row">
+        <button class="chip active" data-sort="time">최근순</button>
+        <button class="chip" data-sort="name">이름순</button>
+        <button class="chip" data-sort="rare">희귀순</button>
+      </div>
+      <div id="inventory" class="inventory"></div>
+    </aside>
+
+    <section class="panel crafting-stage">
+      <div class="panel-head stage-head">
+        <div>
+          <p class="eyebrow">Craft</p>
+          <h2>두 요소를 합성하세요</h2>
+        </div>
+        <div class="stats">
+          <div><b id="statElements">4</b><span>요소</span></div>
+          <div><b id="statCrafts">0</b><span>합성</span></div>
+          <div><b id="statFirsts">0</b><span>First</span></div>
+        </div>
+      </div>
+
+      <div class="craft-zone">
+        <div id="slotA" class="slot" data-slot="a">
+          <span class="slot-placeholder">첫 번째 요소</span>
+        </div>
+        <div class="plus">+</div>
+        <div id="slotB" class="slot" data-slot="b">
+          <span class="slot-placeholder">두 번째 요소</span>
+        </div>
+      </div>
+
+      <div class="craft-actions">
+        <button id="craftBtn" class="primary-btn">합성하기</button>
+        <button id="randomBtn" class="secondary-btn">랜덤 합성</button>
+        <button id="resetSlotsBtn" class="secondary-btn">슬롯 비우기</button>
+      </div>
+
+      <div id="resultArea" class="result-card hidden">
+        <div id="resultBadge" class="badge">New</div>
+        <div id="resultIcon" class="result-icon">✨</div>
+        <div>
+          <h3 id="resultName">새 요소</h3>
+          <p id="resultRecipe">조합식</p>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="codex">도감</button>
+        <button class="tab" data-tab="achievements">업적</button>
+        <button class="tab" data-tab="ranking">랭킹</button>
+        <button class="tab" data-tab="history">기록</button>
+      </div>
+
+      <div class="tab-content active" id="tab-codex">
+        <div class="section-title">
+          <h3>발견 도감</h3>
+          <span id="codexCount">0개 발견</span>
+        </div>
+        <div id="codexGrid" class="codex-grid"></div>
+      </div>
+
+      <div class="tab-content" id="tab-achievements">
+        <div class="section-title">
+          <h3>업적</h3>
+          <span id="achievementCount">0 / 0</span>
+        </div>
+        <div id="achievementGrid" class="achievement-grid"></div>
+      </div>
+
+      <div class="tab-content" id="tab-ranking">
+        <div class="section-title">
+          <h3>랭킹</h3>
+          <button id="refreshRankBtn" class="ghost-btn">새로고침</button>
+        </div>
+        <div class="ranking-note" id="rankingNote">Supabase를 연결하면 전 세계 랭킹이 켜집니다. 연결 전에는 내 기기 랭킹만 표시됩니다.</div>
+        <div id="rankingList" class="ranking-list"></div>
+      </div>
+
+      <div class="tab-content" id="tab-history">
+        <div class="section-title">
+          <h3>합성 기록</h3>
+          <button id="clearHistoryBtn" class="ghost-btn danger">기록 삭제</button>
+        </div>
+        <div id="historyList" class="history-list"></div>
+      </div>
+    </section>
+
+    <aside class="panel tips">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">Quest</p>
+          <h2>추천 도전</h2>
+        </div>
+      </div>
+      <div id="questList" class="quest-list"></div>
+      <div class="setup-card">
+        <h3>전 세계 First Discovery 켜기</h3>
+        <p>GitHub Pages는 정적 호스팅이라 저장 서버가 없습니다. <b>Supabase URL / anon key</b>를 app.js에 넣고 supabase.sql을 실행하면 전 세계 공용 발견·랭킹이 작동합니다.</p>
+        <button id="copySetupBtn" class="secondary-btn full">설정 방법 복사</button>
+      </div>
+      <button id="hardResetBtn" class="ghost-btn danger full">내 저장 데이터 초기화</button>
+    </aside>
+  </main>
+
+  <div id="toastHost" class="toast-host"></div>
+
+  <div id="nameModal" class="modal hidden">
+    <div class="modal-card">
+      <h2>닉네임 설정</h2>
+      <p>랭킹에 표시될 이름입니다. 개인정보는 쓰지 않는 걸 추천해요.</p>
+      <input id="playerNameInput" class="search" maxlength="18" placeholder="예: CraftMaster" />
+      <div class="modal-actions">
+        <button id="saveNameBtn" class="primary-btn">저장</button>
+        <button id="closeNameModal" class="secondary-btn">닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <template id="elementTemplate">
+    <button class="element-card" draggable="true">
+      <span class="emoji"></span>
+      <span class="name"></span>
+      <small class="meta"></small>
+    </button>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>

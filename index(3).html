@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>무한 조합 공방</title>
+<style>
+  *{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#ecfeff;background:#030712}body{background:radial-gradient(circle at 10% 0%,#155e75 0,#07111f 34%,#020617 100%);overflow-x:hidden}.wrap{max-width:1250px;margin:0 auto;padding:24px}.top{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}.brand{display:flex;align-items:center;gap:14px}.logo{width:62px;height:62px;border-radius:20px;display:grid;place-items:center;font-size:34px;background:linear-gradient(135deg,#38bdf8,#8b5cf6,#22c55e);box-shadow:0 0 45px #38bdf866;animation:float 3s ease-in-out infinite}h1{margin:0;font-size:clamp(30px,5vw,58px);letter-spacing:-.06em}.sub{margin:3px 0 0;color:#a8c7dd}.actions{display:flex;gap:8px;flex-wrap:wrap}.btn,.input{border:1px solid #334155;background:#0f172acc;color:white;border-radius:999px;padding:11px 15px;font-weight:900;cursor:pointer}.input{cursor:text;outline:none;min-width:150px}.btn:hover,.item:hover{transform:translateY(-2px);border-color:#7dd3fc}.primary{border:0;background:linear-gradient(135deg,#0284c7,#7c3aed)}.danger{border-color:#fb7185;background:#fb718522}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.stat{background:#0f172acc;border:1px solid #ffffff18;border-radius:22px;padding:16px;box-shadow:0 20px 60px #0007}.stat b{display:block;font-size:32px}.stat span{color:#a8c7dd;font-size:13px;font-weight:900}.main{display:grid;grid-template-columns:1fr 350px;gap:16px}.panel{background:linear-gradient(180deg,#111827e6,#07111fe6);border:1px solid #ffffff18;border-radius:26px;box-shadow:0 25px 80px #0008}.game{padding:18px}.forge{min-height:300px;border:1px solid #7dd3fc33;border-radius:30px;background:radial-gradient(circle,#38bdf82d,transparent 37%),#02061788;display:grid;place-items:center;position:relative;overflow:hidden}.forge:before{content:"";position:absolute;inset:-140px;background:conic-gradient(transparent,#7dd3fc55,transparent,#a78bfa55,transparent);animation:spin 14s linear infinite;pointer-events:none}.forgeIn{position:relative;z-index:2;text-align:center;padding:18px;width:100%}.slots{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}.slot{width:172px;height:132px;border:2px dashed #94a3b855;border-radius:24px;display:grid;place-items:center;background:#0206177a;color:#a8c7dd;font-weight:1000;padding:10px;text-align:center}.slot.filled{border-color:#7dd3fc;background:#7dd3fc18;color:white}.plus{font-size:36px;font-weight:1000}.result{min-height:70px;margin-top:12px;color:#a8c7dd;font-weight:900}.first{font-size:26px;color:#facc15;text-shadow:0 0 26px #facc15aa;font-weight:1000;animation:pulse .7s ease-in-out infinite alternate}.inventory{margin-top:18px}.head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}.title{font-size:19px;font-weight:1000}.small{font-size:12px;color:#a8c7dd;font-weight:800}.search{background:#02061799;border:1px solid #334155;color:white;border-radius:999px;padding:10px 14px;outline:none}.items{max-height:285px;overflow:auto;padding:4px}.item{display:inline-flex;align-items:center;gap:8px;border:1px solid #ffffff1e;background:#ffffff12;color:white;border-radius:999px;padding:10px 13px;margin:5px;font-weight:900;cursor:pointer;user-select:none;transition:.15s;animation:pop .18s ease both}.item.selected{outline:3px solid #7dd3fc;background:#0ea5e944}.item.legend{background:linear-gradient(135deg,#facc152a,#a78bfa2a);border-color:#facc1588}.emoji{font-size:22px}.badge{font-size:10px;background:#7dd3fc;color:#04111d;border-radius:999px;padding:3px 7px}.side{display:grid;gap:14px}.box{padding:16px}.scroll{max-height:228px;overflow:auto;margin-top:10px}.row{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#ffffff10;border:1px solid #ffffff12;border-radius:16px;padding:10px;margin-bottom:8px}.muted{color:#a8c7dd}.modal{display:none;position:fixed;inset:0;background:#000b;z-index:10;place-items:center;padding:18px}.modal.show{display:grid}.modalBox{width:min(920px,100%);max-height:86vh;overflow:hidden;background:#0b1220;border:1px solid #ffffff24;border-radius:26px;box-shadow:0 30px 90px #000}.modalHead{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:17px;border-bottom:1px solid #ffffff18}.book{padding:17px;display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px;max-height:calc(86vh - 74px);overflow:auto}.bookCard{border:1px solid #ffffff16;background:#ffffff10;border-radius:18px;padding:14px}.big{font-size:36px}.toastWrap{position:fixed;right:18px;bottom:18px;z-index:30;display:grid;gap:8px;width:min(390px,calc(100vw - 36px))}.toast{background:#111827f3;border:1px solid #ffffff24;border-radius:18px;padding:13px 15px;font-weight:900;box-shadow:0 18px 50px #0008;animation:toast .22s ease both}.particle{position:fixed;z-index:25;pointer-events:none;font-size:25px;animation:burst .9s ease-out forwards}@keyframes float{50%{transform:translateY(-6px)}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}@keyframes pulse{to{filter:brightness(1.45)}}@keyframes toast{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}@keyframes burst{to{transform:translate(var(--x),var(--y)) rotate(380deg) scale(.25);opacity:0}}@media(max-width:900px){.main{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:540px){.wrap{padding:14px}.stats{grid-template-columns:1fr}.slot{width:137px;height:110px}.actions,.btn,.input{width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <div class="logo">✨</div>
+      <div>
+        <h1>무한 조합 공방</h1>
+        <p class="sub">기본 요소를 클릭해서 새로운 세상을 만들어 보세요.</p>
+      </div>
+    </div>
+    <div class="actions">
+      <input id="player" class="input" placeholder="플레이어 이름" maxlength="14">
+      <button id="bookBtn" class="btn primary" type="button">📚 도감</button>
+      <button id="rankBtn" class="btn" type="button">🏆 랭킹 등록</button>
+      <button id="resetBtn" class="btn danger" type="button">초기화</button>
+    </div>
+  </header>
+
+  <section class="stats">
+    <div class="stat"><b id="sCount">0</b><span>발견 요소</span></div>
+    <div class="stat"><b id="sCombo">0</b><span>조합 횟수</span></div>
+    <div class="stat"><b id="sFirst">0</b><span>First Discovery</span></div>
+    <div class="stat"><b id="sScore">0</b><span>점수</span></div>
+  </section>
+
+  <main class="main">
+    <section class="panel game">
+      <div class="forge">
+        <div class="forgeIn">
+          <div class="slots">
+            <div id="slot0" class="slot">첫 번째 요소</div>
+            <div class="plus">+</div>
+            <div id="slot1" class="slot">두 번째 요소</div>
+          </div>
+          <p><button id="combineBtn" class="btn primary" type="button">⚗️ 조합하기</button></p>
+          <div id="result" class="result">예: 물 + 불 = 증기</div>
+        </div>
+      </div>
+
+      <div class="inventory">
+        <div class="head">
+          <div>
+            <div class="title">내 요소</div>
+            <div class="small">요소를 클릭하세요. 2개가 선택되면 자동으로 조합됩니다.</div>
+          </div>
+          <input id="search" class="search" placeholder="검색">
+        </div>
+        <div id="items" class="items"></div>
+      </div>
+    </section>
+
+    <aside class="side">
+      <section class="panel box"><div class="title">🏆 로컬 랭킹</div><div id="ranks" class="scroll"></div></section>
+      <section class="panel box"><div class="title">🎖️ 업적</div><div id="achievements" class="scroll"></div></section>
+      <section class="panel box"><div class="title">🧪 최근 조합</div><div id="history" class="scroll"></div></section>
+    </aside>
+  </main>
+</div>
+
+<div id="modal" class="modal">
+  <div class="modalBox">
+    <div class="modalHead">
+      <div><div class="title">📚 도감</div><div class="small">발견한 요소 목록</div></div>
+      <button id="closeModal" class="btn" type="button">닫기</button>
+    </div>
+    <div id="book" class="book"></div>
+  </div>
+</div>
+<div id="toastWrap" class="toastWrap"></div>
+
+<script>
+(function(){
+  var START=['물','불','바람','흙'];
+  var INFO={
+    '물':['💧','기본','common'],'불':['🔥','기본','common'],'바람':['🌬️','기본','common'],'흙':['🌱','기본','common'],
+    '증기':['♨️','자연','common'],'용암':['🌋','자연','uncommon'],'진흙':['🟤','자연','common'],'먼지':['💨','자연','common'],'비':['🌧️','날씨','common'],'에너지':['⚡','과학','uncommon'],'돌':['🪨','자연','common'],'구름':['☁️','날씨','common'],'하늘':['🌌','우주','uncommon'],'산':['⛰️','자연','uncommon'],'바다':['🌊','자연','uncommon'],'섬':['🏝️','자연','uncommon'],'모래':['🏖️','자연','common'],'사막':['🏜️','자연','uncommon'],'유리':['🔍','과학','uncommon'],
+    '식물':['🌿','생명','common'],'나무':['🌳','생명','common'],'숲':['🌲','생명','uncommon'],'생명':['🧬','생명','rare'],'동물':['🐾','생명','rare'],'인간':['🧑','문명','rare'],'도구':['🛠️','문명','common'],'집':['🏠','문명','common'],'마을':['🏘️','문명','uncommon'],'도시':['🏙️','문명','rare'],'문명':['🏛️','문명','epic'],
+    '태양':['☀️','우주','epic'],'달':['🌙','우주','rare'],'별':['⭐','우주','rare'],'우주':['🌌','우주','epic'],'행성':['🪐','우주','epic'],'전기':['🔌','과학','rare'],'컴퓨터':['💻','기술','rare'],'코드':['💾','기술','rare'],'인터넷':['🌐','기술','rare'],'웹사이트':['🕸️','기술','rare'],'깃허브':['🐙','기술','epic'],'게임':['🎮','기술','rare'],'AI':['🤖','기술','epic'],'무한':['♾️','전설','legendary'],'창조자':['👑','전설','legendary'],
+    '번개':['🌩️','날씨','rare'],'폭풍':['⛈️','날씨','rare'],'얼음':['🧊','자연','uncommon'],'눈':['❄️','날씨','uncommon'],'마법':['🪄','전설','epic'],'드래곤':['🐉','전설','legendary'],'검':['⚔️','문명','uncommon'],'기사':['🛡️','문명','rare'],'왕국':['🏰','문명','epic'],'파도':['🌊','자연','common'],'서핑':['🏄','놀이','rare']
+  };
+  var REC={
+    '물+불':'증기','불+흙':'용암','물+흙':'진흙','바람+흙':'먼지','물+바람':'비','불+바람':'에너지','흙+흙':'돌','물+물':'바다','불+불':'태양','바람+바람':'하늘',
+    '증기+바람':'구름','비+흙':'식물','식물+흙':'나무','나무+나무':'숲','바다+바람':'파도','파도+인간':'서핑','바다+흙':'섬','돌+바람':'모래','모래+불':'유리','모래+모래':'사막',
+    '돌+흙':'산','구름+에너지':'번개','번개+구름':'폭풍','물+추위':'얼음','물+구름':'눈','물+에너지':'생명','생명+흙':'동물','동물+도구':'인간','인간+돌':'도구','인간+나무':'집','집+집':'마을','마을+마을':'도시','도시+도구':'문명',
+    '하늘+불':'태양','하늘+돌':'달','하늘+태양':'별','별+별':'우주','우주+흙':'행성','에너지+도구':'전기','전기+도구':'컴퓨터','컴퓨터+인간':'코드','컴퓨터+코드':'인터넷','인터넷+코드':'웹사이트','웹사이트+코드':'깃허브','컴퓨터+재미':'게임','컴퓨터+생명':'AI','AI+우주':'무한','무한+인간':'창조자','불+마법':'드래곤','돌+도구':'검','검+인간':'기사','기사+집':'왕국','별+도구':'마법'
+  };
+  var ACH=[
+    ['start','첫 조합','조합 1번 하기',function(s){return s.combo>=1}],['ten','수집가','요소 10개 발견',function(s){return s.elements.length>=10}],['twenty','탐험가','요소 20개 발견',function(s){return s.elements.length>=20}],['fifty','도감왕','요소 50개 발견',function(s){return s.elements.length>=50}],['first','FIRST','첫 발견 1개',function(s){return s.first>=1}],['mix50','연금술 중독','조합 50번 하기',function(s){return s.combo>=50}],['ai','AI 탄생','AI 발견',function(s){return s.elements.indexOf('AI')>-1}],['inf','무한 도달','무한 발견',function(s){return s.elements.indexOf('무한')>-1}],['god','창조자의 자리','창조자 발견',function(s){return s.elements.indexOf('창조자')>-1}]
+  ];
+  var KEY='craft_onefile_click_fixed_v1', RKEY='craft_onefile_rank_v1';
+  var selected=[];
+  var emojiPool=['✨','🔮','💎','🧿','🌈','🌀','🌟','🍀','🧠','🛸','🧪','🎲','🔥','🌊','⚡'];
+  var prefixes=['빛나는','고대의','신비한','초월한','작은','거대한','푸른','붉은','끝없는','숨겨진','꿈꾸는','전설의','빠른','멋진'];
+  var suffixes=['결정','정령','기계','탑','왕관','문','조각','심장','별','섬','엔진','나침반','세계','코어','왕국'];
+  function $(id){return document.getElementById(id)}
+  var el={player:$('player'),bookBtn:$('bookBtn'),rankBtn:$('rankBtn'),resetBtn:$('resetBtn'),sCount:$('sCount'),sCombo:$('sCombo'),sFirst:$('sFirst'),sScore:$('sScore'),slot0:$('slot0'),slot1:$('slot1'),combineBtn:$('combineBtn'),result:$('result'),search:$('search'),items:$('items'),ranks:$('ranks'),achievements:$('achievements'),history:$('history'),modal:$('modal'),closeModal:$('closeModal'),book:$('book'),toastWrap:$('toastWrap')};
+  function getJSON(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
+  function setJSON(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+  function base(){return{elements:START.slice(),combo:0,first:0,firstMap:{},history:[],ach:[],player:''}}
+  var state=getJSON(KEY,null); if(!state||!Array.isArray(state.elements))state=base();
+  state.elements=uniq(state.elements.concat(START)); state.combo=state.combo||0; state.first=state.first||0; state.firstMap=state.firstMap||{}; state.history=state.history||[]; state.ach=state.ach||[]; state.player=state.player||'';
+  function uniq(a){var out=[];for(var i=0;i<a.length;i++)if(out.indexOf(a[i])<0)out.push(a[i]);return out}
+  function hash(t){var h=2166136261;for(var i=0;i<t.length;i++){h^=t.charCodeAt(i);h+=(h<<1)+(h<<4)+(h<<7)+(h<<8)+(h<<24)}return h>>>0}
+  function key(a,b){return [a,b].sort(function(x,y){return x.localeCompare(y,'ko')}).join('+')}
+  function info(n){if(!INFO[n]){var h=hash(n);INFO[n]=[emojiPool[h%emojiPool.length],'발견',h%79===0?'legendary':h%19===0?'epic':h%7===0?'rare':h%3===0?'uncommon':'common']}return INFO[n]}
+  function findRecipe(a,b){return REC[a+'+'+b]||REC[b+'+'+a]||REC[key(a,b)]}
+  function makeNew(a,b){var r=findRecipe(a,b); if(r)return r; var h=hash(key(a,b)); var name=prefixes[h%prefixes.length]+' '+suffixes[(h>>4)%suffixes.length]; var n=name, c=2; while(state.elements.indexOf(n)>=0){n=name+' '+c;c++} info(n); return n}
+  function score(){return state.elements.length*10+state.combo+state.first*35+state.ach.length*60}
+  function save(){state.player=el.player.value.trim();setJSON(KEY,state)}
+  function itemHTML(name){var d=info(name);return '<div class="item '+(selected.indexOf(name)>=0?'selected ':'')+(d[2]==='legendary'?'legend':'')+'" role="button" tabindex="0" data-name="'+esc(name)+'"><span class="emoji">'+d[0]+'</span><span>'+esc(name)+'</span>'+(d[2]!=='common'?'<span class="badge">'+d[2]+'</span>':'')+'</div>'}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function renderSlots(){for(var i=0;i<2;i++){var slot=el['slot'+i];var n=selected[i];slot.className='slot'+(n?' filled':'');slot.innerHTML=n?itemHTML(n):(i===0?'첫 번째 요소':'두 번째 요소')}}
+  function renderItems(){var q=(el.search.value||'').toLowerCase();var arr=state.elements.slice().sort(function(a,b){return a.localeCompare(b,'ko')}).filter(function(n){return n.toLowerCase().indexOf(q)>=0});el.items.innerHTML=arr.map(itemHTML).join('')||'<p class="muted">검색 결과가 없습니다.</p>'}
+  function renderStats(){el.sCount.textContent=state.elements.length;el.sCombo.textContent=state.combo;el.sFirst.textContent=state.first;el.sScore.textContent=score()}
+  function renderHistory(){if(!state.history.length){el.history.innerHTML='<p class="muted">아직 조합 기록이 없습니다.</p>';return}el.history.innerHTML=state.history.slice(0,30).map(function(h){var d=info(h.r);return '<div class="row"><div><b>'+d[0]+' '+esc(h.r)+'</b><div class="small">'+esc(h.a)+' + '+esc(h.b)+(h.first?' · FIRST':'')+'</div></div></div>'}).join('')}
+  function renderAch(){el.achievements.innerHTML=ACH.map(function(a){var done=state.ach.indexOf(a[0])>=0;return '<div class="row" style="opacity:'+(done?'1':'.5')+'"><div><b>'+(done?'✅ ':'⬜ ')+esc(a[1])+'</b><div class="small">'+esc(a[2])+'</div></div></div>'}).join('')}
+  function renderRanks(){var ranks=getJSON(RKEY,[]);if(!ranks.length){el.ranks.innerHTML='<p class="muted">아직 등록된 랭킹이 없습니다.</p>';return}el.ranks.innerHTML=ranks.slice(0,10).map(function(r,i){return '<div class="row"><div><b>'+(i===0?'🥇 ':i===1?'🥈 ':i===2?'🥉 ':'#'+(i+1)+' ')+esc(r.name)+'</b><div class="small">요소 '+r.count+'개 · First '+r.first+'개</div></div><b style="color:#7dd3fc">'+r.score+'</b></div>'}).join('')}
+  function renderBook(){el.book.innerHTML=state.elements.slice().sort(function(a,b){return a.localeCompare(b,'ko')}).map(function(n){var d=info(n);return '<div class="bookCard"><div class="big">'+d[0]+'</div><b>'+esc(n)+'</b><div class="small">'+d[1]+' · '+d[2]+(state.firstMap[n]?' · FIRST':'')+'</div></div>'}).join('')}
+  function render(){renderSlots();renderItems();renderStats();renderHistory();renderAch();renderRanks();renderBook()}
+  function choose(name){if(selected.length>=2)selected=[];selected.push(name);render();if(selected.length===2)setTimeout(combine,120)}
+  function combine(){if(selected.length<2){toast('요소 2개를 먼저 클릭하세요.');return}var a=selected[0],b=selected[1],r=makeNew(a,b),d=info(r);state.combo++;var isNew=state.elements.indexOf(r)<0;var isFirst=isNew&&!state.firstMap[r];if(isNew)state.elements.push(r);if(isFirst){state.firstMap[r]=true;state.first++}state.history.unshift({a:a,b:b,r:r,first:isFirst});state.history=state.history.slice(0,40);el.result.innerHTML=(isFirst?'<div class="first">FIRST DISCOVERY</div>':'')+itemHTML(r)+'<div class="small">'+esc(a)+' + '+esc(b)+' = '+esc(r)+'</div>';burst(d[0]);toast((isNew?'새 요소 발견! ':'이미 발견한 요소 ')+d[0]+' '+r+(isFirst?' · FIRST':''));selected=[];checkAch();save();render()}
+  function checkAch(){for(var i=0;i<ACH.length;i++){var a=ACH[i];if(state.ach.indexOf(a[0])<0&&a[3](state)){state.ach.push(a[0]);toast('업적 달성: '+a[1]+' 🎖️')}}}
+  function addRank(){var name=(el.player.value||'').trim()||'이름없음';var ranks=getJSON(RKEY,[]);ranks.push({name:name,score:score(),count:state.elements.length,first:state.first});ranks.sort(function(a,b){return b.score-a.score});setJSON(RKEY,ranks.slice(0,20));state.player=name;save();toast('랭킹 등록 완료! 🏆');renderRanks()}
+  function reset(){if(confirm('초기화할까요? 발견 요소와 업적이 사라집니다.')){state=base();selected=[];el.player.value='';el.result.textContent='예: 물 + 불 = 증기';save();toast('초기화 완료');render()}}
+  function toast(msg){var t=document.createElement('div');t.className='toast';t.textContent=msg;el.toastWrap.appendChild(t);setTimeout(function(){t.style.opacity='0';t.style.transform='translateY(12px)'},2400);setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t)},3100)}
+  function burst(sym){var box=document.querySelector('.forge').getBoundingClientRect();var cx=box.left+box.width/2,cy=box.top+box.height/2;for(var i=0;i<22;i++){var p=document.createElement('div');p.className='particle';p.textContent=i%3===0?sym:['✨','⭐','💫','✦'][i%4];p.style.left=cx+'px';p.style.top=cy+'px';var ang=Math.PI*2*i/22,dist=80+Math.random()*110;p.style.setProperty('--x',Math.cos(ang)*dist+'px');p.style.setProperty('--y',Math.sin(ang)*dist+'px');document.body.appendChild(p);(function(node){setTimeout(function(){if(node.parentNode)node.parentNode.removeChild(node)},950)})(p)}}
+  el.items.addEventListener('click',function(e){var item=e.target.closest('.item');if(item&&item.dataset.name)choose(item.dataset.name)});
+  el.items.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){var item=e.target.closest('.item');if(item&&item.dataset.name){e.preventDefault();choose(item.dataset.name)}}});
+  el.combineBtn.addEventListener('click',combine);
+  el.search.addEventListener('input',renderItems);
+  el.rankBtn.addEventListener('click',addRank);
+  el.resetBtn.addEventListener('click',reset);
+  el.bookBtn.addEventListener('click',function(){renderBook();el.modal.classList.add('show')});
+  el.closeModal.addEventListener('click',function(){el.modal.classList.remove('show')});
+  el.modal.addEventListener('click',function(e){if(e.target===el.modal)el.modal.classList.remove('show')});
+  el.player.value=state.player;el.player.addEventListener('change',save);checkAch();save();render();
+})();
+</script>
+</body>
+</html>

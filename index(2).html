@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>무한 조합 공방</title>
+  <style>
+    *{box-sizing:border-box} body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#eef6ff;background:radial-gradient(circle at 20% 10%,#164e63 0,#07111f 34%,#050816 100%);overflow-x:hidden} button,input{font:inherit} .wrap{max-width:1280px;margin:0 auto;padding:24px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px}.brand{display:flex;gap:14px;align-items:center}.logo{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;font-size:32px;background:linear-gradient(135deg,#38bdf8,#8b5cf6,#22c55e);box-shadow:0 0 45px #38bdf855;animation:float 3s ease-in-out infinite}h1{margin:0;font-size:clamp(30px,5vw,56px);letter-spacing:-.05em}.sub{margin:5px 0 0;color:#a9bbd4}.actions{display:flex;gap:8px;flex-wrap:wrap}.btn,.nameInput{border:1px solid #334155;background:#0f172acc;color:#fff;border-radius:999px;padding:11px 15px;font-weight:800;cursor:pointer}.btn:hover{transform:translateY(-2px);border-color:#7dd3fc}.primary{border:0;background:linear-gradient(135deg,#0284c7,#7c3aed)}.danger{border-color:#fb718588;background:#fb718522}.nameInput{cursor:text;outline:none;width:160px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}.stat{background:#0f172acc;border:1px solid #ffffff16;border-radius:22px;padding:16px;box-shadow:0 20px 60px #0007}.stat b{display:block;font-size:31px}.stat span{color:#a9bbd4;font-size:13px;font-weight:800}.main{display:grid;grid-template-columns:1fr 345px;gap:16px}.panel{background:linear-gradient(180deg,#111827e6,#07111fd9);border:1px solid #ffffff18;border-radius:26px;box-shadow:0 25px 80px #0008}.game{padding:18px}.forge{min-height:300px;border-radius:30px;border:1px solid #7dd3fc33;background:radial-gradient(circle,#38bdf833,transparent 35%),#02061788;display:grid;place-items:center;position:relative;overflow:hidden}.forge:before{content:"";position:absolute;inset:-100px;background:conic-gradient(transparent,#7dd3fc55,transparent,#a78bfa55,transparent);animation:spin 12s linear infinite}.forgeIn{position:relative;z-index:1;text-align:center}.slots{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}.slot{width:170px;height:135px;border:2px dashed #94a3b855;border-radius:24px;display:grid;place-items:center;color:#a9bbd4;font-weight:900;background:#02061766;padding:10px}.slot.active{border-color:#7dd3fc;background:#7dd3fc18}.plus{font-size:34px;font-weight:1000}.result{min-height:70px;margin-top:14px;color:#a9bbd4;font-weight:800}.first{color:#facc15;font-size:25px;font-weight:1000;text-shadow:0 0 25px #facc1588;animation:pulse .8s ease-in-out infinite alternate}.inventory{margin-top:18px}.head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px}.title{font-size:19px;font-weight:1000}.search{background:#02061799;border:1px solid #334155;color:#fff;border-radius:999px;padding:10px 14px;outline:none}.items{max-height:265px;overflow:auto;padding:4px}.card{display:inline-flex;align-items:center;gap:8px;border:1px solid #ffffff1a;background:#ffffff12;color:#fff;border-radius:999px;padding:10px 13px;margin:5px;font-weight:900;cursor:pointer;user-select:none;animation:pop .2s ease both}.card:hover{transform:translateY(-2px);border-color:#7dd3fc}.card.sel{outline:2px solid #7dd3fc}.card.legend{background:linear-gradient(135deg,#facc152a,#a78bfa2a);border-color:#facc1588}.emoji{font-size:22px}.badge{font-size:10px;background:#7dd3fc;color:#04111d;border-radius:999px;padding:3px 7px}.side{display:grid;gap:14px}.box{padding:16px}.scroll{max-height:225px;overflow:auto;margin-top:10px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#ffffff10;border:1px solid #ffffff12;border-radius:16px;padding:10px;margin-bottom:8px}.small{font-size:12px;color:#a9bbd4;font-weight:800}.muted{color:#a9bbd4}.modal{display:none;position:fixed;inset:0;background:#000a;z-index:10;place-items:center;padding:18px}.modal.show{display:grid}.modalBox{width:min(930px,100%);max-height:86vh;overflow:hidden;background:#0b1220;border:1px solid #ffffff22;border-radius:26px;box-shadow:0 30px 90px #000}.modalHead{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:17px;border-bottom:1px solid #ffffff18}.book{padding:17px;display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px;max-height:calc(86vh - 75px);overflow:auto}.bookCard{border:1px solid #ffffff16;background:#ffffff10;border-radius:18px;padding:14px}.big{font-size:36px}.toastWrap{position:fixed;right:18px;bottom:18px;z-index:20;display:grid;gap:8px;width:min(390px,calc(100vw - 36px))}.toast{background:#111827f2;border:1px solid #ffffff22;border-radius:18px;padding:13px 15px;font-weight:900;box-shadow:0 18px 50px #0008;animation:toast .25s ease both}.particle{position:fixed;z-index:19;pointer-events:none;font-size:25px;animation:burst .9s ease-out forwards}@keyframes float{50%{transform:translateY(-6px)}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes pop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}@keyframes pulse{to{filter:brightness(1.45)}}@keyframes toast{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}@keyframes burst{to{transform:translate(var(--x),var(--y)) rotate(380deg) scale(.25);opacity:0}}@media(max-width:900px){.main{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.wrap{padding:15px}.stats{grid-template-columns:1fr}.slot{width:136px;height:115px}.actions,.btn,.nameInput{width:100%}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div class="brand"><div class="logo">✨</div><div><h1>무한 조합 공방</h1><p class="sub">물, 불, 바람, 흙을 합쳐 새로운 요소를 발견하세요.</p></div></div>
+      <div class="actions"><input id="player" class="nameInput" placeholder="플레이어 이름" maxlength="14"><button id="bookBtn" class="btn primary">📚 도감</button><button id="rankBtn" class="btn">🏆 랭킹 등록</button><button id="resetBtn" class="btn danger">초기화</button></div>
+    </header>
+
+    <section class="stats">
+      <div class="stat"><b id="sCount">0</b><span>발견 요소</span></div>
+      <div class="stat"><b id="sCombo">0</b><span>조합 횟수</span></div>
+      <div class="stat"><b id="sFirst">0</b><span>First Discovery</span></div>
+      <div class="stat"><b id="sScore">0</b><span>점수</span></div>
+    </section>
+
+    <main class="main">
+      <section class="panel game">
+        <div class="forge"><div class="forgeIn"><div class="slots"><div id="slot0" class="slot">첫 번째 요소</div><div class="plus">+</div><div id="slot1" class="slot">두 번째 요소</div></div><p><button id="combine" class="btn primary">⚗️ 조합하기</button></p><div id="result" class="result">예: 물 + 불 = 증기</div></div></div>
+        <div class="inventory"><div class="head"><div><div class="title">내 요소</div><div class="small">요소를 클릭해서 2개를 고르면 자동으로 조합됩니다.</div></div><input id="search" class="search" placeholder="검색"></div><div id="items" class="items"></div></div>
+      </section>
+      <aside class="side">
+        <section class="panel box"><div class="title">🏆 로컬 랭킹</div><div id="ranks" class="scroll"></div></section>
+        <section class="panel box"><div class="title">🎖️ 업적</div><div id="achievements" class="scroll"></div></section>
+        <section class="panel box"><div class="title">🧪 최근 조합</div><div id="history" class="scroll"></div></section>
+      </aside>
+    </main>
+  </div>
+
+  <div id="modal" class="modal"><div class="modalBox"><div class="modalHead"><div><div class="title">📚 도감</div><div class="small">발견한 요소 목록</div></div><button id="closeModal" class="btn">닫기</button></div><div id="book" class="book"></div></div></div>
+  <div id="toastWrap" class="toastWrap"></div>
+
+<script>
+(function(){
+  'use strict';
+
+  var START = ['물','불','바람','흙'];
+  var DATA = {
+    '물':['💧','기본','common'],'불':['🔥','기본','common'],'바람':['🌬️','기본','common'],'흙':['🌱','기본','common'],
+    '증기':['♨️','자연','common'],'용암':['🌋','자연','uncommon'],'진흙':['🟤','자연','common'],'먼지':['💨','자연','common'],'비':['🌧️','날씨','common'],'에너지':['⚡','과학','uncommon'],'돌':['🪨','자연','common'],'구름':['☁️','날씨','common'],'하늘':['🌌','우주','uncommon'],'산':['⛰️','자연','uncommon'],'바다':['🌊','자연','uncommon'],'섬':['🏝️','자연','uncommon'],'모래':['🏖️','자연','common'],'사막':['🏜️','자연','uncommon'],'유리':['🔍','과학','uncommon'],
+    '식물':['🌿','생명','common'],'나무':['🌳','생명','common'],'숲':['🌲','생명','uncommon'],'생명':['🧬','생명','rare'],'동물':['🐾','생명','rare'],'인간':['🧑','문명','rare'],'도구':['🛠️','문명','common'],'집':['🏠','문명','common'],'마을':['🏘️','문명','uncommon'],'도시':['🏙️','문명','rare'],'문명':['🏛️','문명','epic'],
+    '태양':['☀️','우주','epic'],'달':['🌙','우주','rare'],'별':['⭐','우주','rare'],'우주':['🌌','우주','epic'],'행성':['🪐','우주','epic'],'전기':['🔌','과학','rare'],'컴퓨터':['💻','기술','rare'],'코드':['💾','기술','rare'],'인터넷':['🌐','기술','rare'],'웹사이트':['🕸️','기술','rare'],'깃허브':['🐙','기술','epic'],'게임':['🎮','기술','rare'],'AI':['🤖','기술','epic'],'무한':['♾️','전설','legendary'],'창조자':['👑','전설','legendary'],
+    '번개':['🌩️','날씨','rare'],'폭풍':['⛈️','날씨','rare'],'얼음':['🧊','자연','uncommon'],'눈':['❄️','날씨','uncommon'],'마법':['🪄','전설','epic'],'드래곤':['🐉','전설','legendary'],'검':['⚔️','문명','uncommon'],'기사':['🛡️','문명','rare'],'왕국':['🏰','문명','epic'],'파도':['🌊','자연','common'],'서핑':['🏄','놀이','rare']
+  };
+  var RECIPES = {
+    '물+불':'증기','불+흙':'용암','물+흙':'진흙','바람+흙':'먼지','물+바람':'비','불+바람':'에너지','용암+물':'돌','증기+바람':'구름','구름+물':'비','구름+바람':'하늘','돌+흙':'산','물+물':'바다','바다+흙':'섬','먼지+바람':'모래','모래+모래':'사막','모래+불':'유리',
+    '비+흙':'식물','식물+흙':'나무','식물+물':'생명','나무+나무':'숲','생명+흙':'동물','동물+도구':'인간','동물+시간':'인간','인간+돌':'도구','인간+나무':'집','집+집':'마을','마을+마을':'도시','도시+시간':'문명','도시+인간':'문명',
+    '하늘+불':'태양','하늘+돌':'달','하늘+에너지':'별','별+별':'우주','우주+돌':'행성','행성+불':'태양','에너지+구름':'번개','번개+비':'폭풍','물+에너지':'전기','전기+도구':'컴퓨터','컴퓨터+인간':'코드','컴퓨터+컴퓨터':'인터넷','코드+인터넷':'웹사이트','웹사이트+코드':'깃허브','컴퓨터+게임':'게임','게임+코드':'웹사이트','코드+코드':'AI','AI+게임':'무한','AI+우주':'무한','무한+인간':'창조자','무한+무한':'창조자',
+    '물+얼음':'눈','바람+얼음':'눈','물+눈':'얼음','에너지+인간':'마법','마법+동물':'드래곤','불+동물':'드래곤','도구+돌':'검','인간+검':'기사','기사+검':'왕국','바다+달':'파도','파도+바람':'서핑'
+  };
+  var ACH = [
+    ['a1','첫 실험','조합 1번 하기',function(s){return s.combo>=1;}],['a2','초보 창조자','요소 10개 발견',function(s){return s.elements.length>=10;}],['a3','도감 수집가','요소 25개 발견',function(s){return s.elements.length>=25;}],['a4','세계 제작자','요소 50개 발견',function(s){return s.elements.length>=50;}],['a5','FIRST DISCOVERY','첫 발견 1개 달성',function(s){return s.first>=1;}],['a6','연금술 중독','조합 50번 하기',function(s){return s.combo>=50;}],['a7','AI 탄생','AI 발견',function(s){return s.elements.indexOf('AI')>-1;}],['a8','무한 도달','무한 발견',function(s){return s.elements.indexOf('무한')>-1;}],['a9','창조자의 자리','창조자 발견',function(s){return s.elements.indexOf('창조자')>-1;}]
+  ];
+  var KEY='one_html_craft_save_v2', RKEY='one_html_craft_ranks_v2';
+  var selected=[null,null];
+  var emojiPool=['✨','🔮','💎','🧿','🌈','🌀','🌟','🍀','🧠','🛸','🧪','🎲','🔥','🌊','⚡'];
+  var prefixes=['빛나는','고대의','신비한','초월한','작은','거대한','푸른','붉은','끝없는','숨겨진','꿈꾸는','전설의'];
+  var suffixes=['결정','정령','기계','탑','왕관','문','조각','심장','별','섬','엔진','나침반','세계','코어'];
+  var el={}; ['player','sCount','sCombo','sFirst','sScore','slot0','slot1','combine','result','search','items','ranks','achievements','history','book','modal','bookBtn','closeModal','rankBtn','resetBtn','toastWrap'].forEach(function(id){el[id]=document.getElementById(id);});
+
+  function safeGet(k,fallback){try{var v=localStorage.getItem(k);return v?JSON.parse(v):fallback;}catch(e){return fallback;}}
+  function safeSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+  function fresh(){return {elements:START.slice(),firstMap:{},first:0,combo:0,history:[],ach:[],player:''};}
+  var state=safeGet(KEY,null); if(!state || !Array.isArray(state.elements)) state=fresh();
+  state.elements=unique(state.elements.concat(START));
+  state.firstMap=state.firstMap||{}; state.history=state.history||[]; state.ach=state.ach||[]; state.combo=state.combo||0; state.first=state.first||0; state.player=state.player||'';
+
+  function unique(arr){var out=[];arr.forEach(function(x){if(out.indexOf(x)===-1)out.push(x);});return out;}
+  function hash(t){var h=2166136261;for(var i=0;i<t.length;i++){h^=t.charCodeAt(i);h+=(h<<1)+(h<<4)+(h<<7)+(h<<8)+(h<<24);}return h>>>0;}
+  function canon(a,b){return [a,b].sort(function(x,y){return x.localeCompare(y,'ko');}).join('+');}
+  function getData(name){if(!DATA[name]){var h=hash(name);DATA[name]=[emojiPool[h%emojiPool.length],'발견', h%73===0?'legendary':h%17===0?'epic':h%7===0?'rare':h%3===0?'uncommon':'common'];}return DATA[name];}
+  function recipe(a,b){return RECIPES[a+'+'+b] || RECIPES[b+'+'+a] || RECIPES[canon(a,b)];}
+  function makeElement(a,b){var r=recipe(a,b); if(r) return r; var h=hash(canon(a,b)); var name=prefixes[h%prefixes.length]+' '+suffixes[(h>>4)%suffixes.length]; var n=name, tries=0; while(state.elements.indexOf(n)>-1 && tries<20){tries++; n=name+' '+(tries+1);} getData(n); return n;}
+  function score(){return state.elements.length*10+state.first*35+state.combo+state.ach.length*60;}
+
+  function makeCard(name){var d=getData(name); var b=document.createElement('button'); b.type='button'; b.className='card'+(selected.indexOf(name)>-1?' sel':'')+(d[2]==='legendary'?' legend':''); b.draggable=true; var em=document.createElement('span'); em.className='emoji'; em.textContent=d[0]; var nm=document.createElement('span'); nm.textContent=name; b.appendChild(em); b.appendChild(nm); if(d[2]!=='common'){var badge=document.createElement('span'); badge.className='badge'; badge.textContent=d[2]; b.appendChild(badge);} b.onclick=function(){select(name);}; b.ondragstart=function(ev){ev.dataTransfer.setData('text/plain',name);}; return b;}
+  function renderSlot(i){var slot=el['slot'+i]; slot.innerHTML=''; if(selected[i]){slot.classList.add('active'); slot.appendChild(makeCard(selected[i])); slot.querySelector('.card').classList.remove('sel'); slot.querySelector('.card').style.cursor='default';}else{slot.classList.remove('active'); slot.textContent=i===0?'첫 번째 요소':'두 번째 요소';}}
+  function renderItems(){var q=(el.search.value||'').toLowerCase(); el.items.innerHTML=''; state.elements.slice().sort(function(a,b){return a.localeCompare(b,'ko');}).filter(function(n){return n.toLowerCase().indexOf(q)>-1;}).forEach(function(n){el.items.appendChild(makeCard(n));});}
+  function renderStats(){el.sCount.textContent=state.elements.length; el.sCombo.textContent=state.combo; el.sFirst.textContent=state.first; el.sScore.textContent=score();}
+  function renderHistory(){el.history.innerHTML=''; if(!state.history.length){el.history.innerHTML='<p class="muted">아직 조합 기록이 없습니다.</p>';return;} state.history.slice(0,30).forEach(function(h){var d=getData(h.r); var row=document.createElement('div'); row.className='row'; row.innerHTML='<div><b></b><div class="small"></div></div>'; row.querySelector('b').textContent=d[0]+' '+h.r; row.querySelector('.small').textContent=h.a+' + '+h.b+(h.first?' · FIRST':''); el.history.appendChild(row);});}
+  function renderAch(){el.achievements.innerHTML=''; ACH.forEach(function(a){var done=state.ach.indexOf(a[0])>-1; var row=document.createElement('div'); row.className='row'; row.style.opacity=done?'1':'.5'; row.innerHTML='<div><b></b><div class="small"></div></div>'; row.querySelector('b').textContent=(done?'✅ ':'⬜ ')+a[1]; row.querySelector('.small').textContent=a[2]; el.achievements.appendChild(row);});}
+  function renderRanks(){var ranks=safeGet(RKEY,[]); el.ranks.innerHTML=''; if(!ranks.length){el.ranks.innerHTML='<p class="muted">아직 등록된 랭킹이 없습니다.</p>';return;} ranks.slice(0,10).forEach(function(r,i){var row=document.createElement('div'); row.className='row'; var left=document.createElement('div'); left.innerHTML='<b></b><div class="small"></div>'; left.querySelector('b').textContent=(i===0?'🥇 ':i===1?'🥈 ':i===2?'🥉 ':'#'+(i+1)+' ')+r.name; left.querySelector('.small').textContent='요소 '+r.count+'개 · First '+r.first+'개'; var sc=document.createElement('b'); sc.style.color='#7dd3fc'; sc.textContent=r.score; row.appendChild(left); row.appendChild(sc); el.ranks.appendChild(row);});}
+  function renderBook(){el.book.innerHTML=''; state.elements.slice().sort(function(a,b){return a.localeCompare(b,'ko');}).forEach(function(n){var d=getData(n); var card=document.createElement('div'); card.className='bookCard'; card.innerHTML='<div class="big"></div><b></b><div class="small"></div>'; card.querySelector('.big').textContent=d[0]; card.querySelector('b').textContent=n; card.querySelector('.small').textContent=d[1]+' · '+d[2]+(state.firstMap[n]?' · FIRST':''); el.book.appendChild(card);});}
+  function render(){renderSlot(0);renderSlot(1);renderStats();renderItems();renderHistory();renderAch();renderRanks();renderBook();}
+  function save(){state.player=el.player.value.trim(); safeSet(KEY,state);}
+
+  function checkAch(){ACH.forEach(function(a){if(state.ach.indexOf(a[0])===-1 && a[3](state)){state.ach.push(a[0]); toast('업적 달성: '+a[1]+' 🎖️');}});}
+  function select(name){if(!selected[0]) selected[0]=name; else if(!selected[1]) selected[1]=name; else selected=[name,null]; render(); if(selected[0] && selected[1]) setTimeout(combine,120);}
+  function combine(){var a=selected[0], b=selected[1]; if(!a||!b){toast('요소 2개를 먼저 선택하세요.');return;} var r=makeElement(a,b); var d=getData(r); state.combo++; var isNew=state.elements.indexOf(r)===-1; var isFirst=isNew && !state.firstMap[r]; if(isNew) state.elements.push(r); if(isFirst){state.firstMap[r]=true; state.first++;} state.history.unshift({a:a,b:b,r:r,first:isFirst}); state.history=state.history.slice(0,40); el.result.innerHTML=''; if(isFirst){var f=document.createElement('div');f.className='first';f.textContent='FIRST DISCOVERY';el.result.appendChild(f);} var c=makeCard(r); c.style.cursor='default'; c.classList.remove('sel'); el.result.appendChild(c); var p=document.createElement('div'); p.className='small'; p.textContent=a+' + '+b+' = '+r; el.result.appendChild(p); burst(d[0]); toast((isNew?'새 요소 발견! ':'이미 발견한 요소 ')+d[0]+' '+r, isFirst); selected=[null,null]; checkAch(); save(); render();}
+  function addRank(){var name=(el.player.value||'').trim()||'이름없음'; var ranks=safeGet(RKEY,[]); ranks.push({name:name,score:score(),count:state.elements.length,first:state.first}); ranks.sort(function(a,b){return b.score-a.score;}); safeSet(RKEY,ranks.slice(0,20)); state.player=name; save(); toast('랭킹에 등록했습니다! 🏆'); renderRanks();}
+  function reset(){if(confirm('발견, 업적, 기록을 초기화할까요?')){state=fresh(); selected=[null,null]; el.player.value=''; safeSet(KEY,state); el.result.textContent='예: 물 + 불 = 증기'; toast('초기화 완료'); render();}}
+  function toast(msg,first){var t=document.createElement('div'); t.className='toast'; if(first)t.style.borderColor='#facc15'; t.textContent=msg; el.toastWrap.appendChild(t); setTimeout(function(){t.style.opacity='0';t.style.transform='translateY(12px)';},2400); setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t);},3000);}
+  function burst(sym){var rect=document.querySelector('.forge').getBoundingClientRect(); var cx=rect.left+rect.width/2, cy=rect.top+rect.height/2; for(var i=0;i<20;i++){var p=document.createElement('div'); p.className='particle'; p.textContent=i%3===0?sym:['✨','⭐','💫','✦'][i%4]; p.style.left=cx+'px'; p.style.top=cy+'px'; var ang=Math.PI*2*i/20, dist=80+Math.random()*110; p.style.setProperty('--x',Math.cos(ang)*dist+'px'); p.style.setProperty('--y',Math.sin(ang)*dist+'px'); document.body.appendChild(p); setTimeout((function(node){return function(){if(node.parentNode)node.parentNode.removeChild(node);};})(p),950);}}
+  function setupDrop(i){var s=el['slot'+i]; s.ondragover=function(ev){ev.preventDefault();s.classList.add('active');}; s.ondragleave=function(){s.classList.remove('active');}; s.ondrop=function(ev){ev.preventDefault();selected[i]=ev.dataTransfer.getData('text/plain');s.classList.remove('active');render();};}
+
+  el.combine.onclick=combine; el.search.oninput=renderItems; el.rankBtn.onclick=addRank; el.resetBtn.onclick=reset; el.bookBtn.onclick=function(){renderBook();el.modal.classList.add('show');}; el.closeModal.onclick=function(){el.modal.classList.remove('show');}; el.modal.onclick=function(ev){if(ev.target===el.modal)el.modal.classList.remove('show');}; el.player.value=state.player; el.player.onchange=save; setupDrop(0); setupDrop(1); checkAch(); save(); render();
+})();
+</script>
+</body>
+</html>
